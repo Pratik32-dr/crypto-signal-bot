@@ -1,0 +1,10 @@
+python-telegram-bot==20.0
+requests
+apscheduler
+pytz
+ccxt
+python-dotenv
+pandas
+numpy
+loguru
+matplotlib
