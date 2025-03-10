@@ -180,16 +180,16 @@ ADMIN_ID = 6777398940
 @bot.message_handler(commands=['addpremium'])
 def add_premium(message):
     if message.chat.id != ADMIN_ID:
-        bot.send_message(message.chat.id, "⛔ You are not authorized to use this command!")
+        bot.send_message(message.chat.id, "⛔ You are not authorized to use this command.")  # ✅ Fixed broken string
         return
 
     try:
         user_id = message.text.split()[1]  # Extract user ID from the message
         with open("premium_users.txt", "a") as f:
             f.write(user_id + "\n")
-        bot.send_message(message.chat.id, f"✅ User {user_id} added as a premium member!")
-        bot.send_message(user_id, "🎉 Congratulations! You are now a **Premium Member**! 🚀")
-        except IndexError: 
+        bot.send_message(message.chat.id, f"✅ User {user_id} added as a premium user.")  # ✅ Fixed broken string
+        bot.send_message(user_id, "🎉 Congratulations! You are now a **Premium User**!")  # ✅ Fixed broken string
+    except IndexError:  # ✅ Correct try-except usage
         bot.send_message(message.chat.id, "⚠️ Usage: /addpremium <user_id>")
 
 # 🔄 Run the Bot
