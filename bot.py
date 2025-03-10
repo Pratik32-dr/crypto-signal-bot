@@ -60,7 +60,7 @@ def news(message):
         news_text += "**📈 Stay updated with real-time market trends!**"
         bot.send_message(message.chat.id, news_text)
     except Exception as e:
-        bot.send_message(message.chat.id, "⚠️ Error fetching news. Try again la>
+        bot.send_message(message.chat.id, "⚠️ Error fetching news. Try again later.")
 
 # 📊 Crypto Signals (Buy, Sell, Hold)
 @bot.message_handler(commands=['signals'])
