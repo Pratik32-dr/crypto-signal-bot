@@ -15,7 +15,6 @@ BINANCE_PRICE_API = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSD"
 # ✅ Print startup message
 print("🚀 GainXpert Crypto Bot Running 24/7... Waiting for commands!", flush=T>
 
-# 🏆 List of Premium Users
 premium_users = set()
 
 # 🔥 Welcome Message
