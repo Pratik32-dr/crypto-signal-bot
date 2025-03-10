@@ -10,7 +10,7 @@ bot = telebot.TeleBot(TOKEN)
 
 # ✅ Binance API URLs
 BINANCE_NEWS_API = "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"
-BINANCE_PRICE_API = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSD>
+BINANCE_PRICE_API = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSD"
 
 # ✅ Print startup message
 print("🚀 GainXpert Crypto Bot Running 24/7... Waiting for commands!", flush=T>
