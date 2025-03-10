@@ -70,14 +70,14 @@ def signals(message):
         premium_users = set(f.read().splitlines())
 
     if str(user_id) not in premium_users:
-        bot.send_message(user_id, "❌ Only premium users can access trading si>
+        bot.send_message(user_id, "❌ Only premium users can access trading signals. Use /premium to upgrade.")
         return
 
     # Fetch crypto signal from Binance API
     import requests
 
     try:
-        binance_api = "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUS>
+        binance_api = "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"
         response = requests.get(binance_api)
         data = response.json()
         price_change = float(data['priceChangePercent'])
@@ -87,7 +87,7 @@ def signals(message):
         elif price_change <= -1.2:
             signal = "📉 **SELL Signal:** BTC is down by 2% or more! ❌"
         else:
-            signal = "⚖ **HOLD Signal:** No significant change, stay steady. [>
+            signal = "⚖ **HOLD Signal:** No significant change, stay steady. 📊"
 
         bot.send_message(user_id, f"📡 **Crypto Signal Update**:\n{signal}")
     except Exception as e:
@@ -109,7 +109,7 @@ def premium(message):
         "💰 **Price:** $10 per month\n"
         "📩 **To Upgrade:** Send payment proof\n"
         "🔗 Pay via Payeer: `P1129183274`\n"
-        "🔗 Trust Wallet (USDT-BEP20): `bc1qxpze30u7vfukmh7xmdcf9d2ajwqhpjngmc>
+        "🔗 Trust Wallet (USDT-BEP20): 'bc1qxpze30u7vfukmh7xmdcf9d2ajwqhpjngmcs9ls'"
     )
 
 @bot.message_handler(commands=['verify'])
@@ -118,7 +118,7 @@ def verify(message):
 
     try:
         with open("premium_users.txt", "r") as f:
-            premium_users = set(f.read().splitlines())  # Read and store premi>
+            premium_users = set(f.read().splitlines())  # Read and store premium users
 
         if user_id in premium_users:
             bot.send_message(
@@ -138,7 +138,7 @@ def verify(message):
             bot.send_message(
                 user_id,
                 "⚠️ **Verification Failed!**\n\n"
-                "🚨 You are currently using the **FREE version** of *GainXpert>
+                "🚨 You are currently using the **FREE version** of *GainXpert*.\n"
                 "🔓 **Upgrade to Premium** to unlock exclusive benefits!\n\n"
                 "💰 **Premium Features Include:**\n"
                 "📊 Advanced signals with higher accuracy 📈\n"
@@ -147,7 +147,7 @@ def verify(message):
                 "⚡ Instant news updates from Binance & other sources 📰\n"
                 "🛠 24/7 VIP support & expert guidance 💬\n\n"
                 "**🔑 Want to Upgrade?**\n"
-                "💳 Pay via *Payeer or Trust Wallet* and send proof to the adm>
+                "💳 Pay via *Payeer or Trust Wallet* and send proof to the admin.\n"
                 "🔄 Use `/premium` to check plans & payment details.\n\n"
                 "**📩 Contact Support:** @YourAdminUsername"
             )
@@ -164,16 +164,16 @@ ADMIN_ID = 6777398940
 @bot.message_handler(commands=['addpremium'])
 def add_premium(message):
     if message.chat.id != ADMIN_ID:
-        bot.send_message(message.chat.id, "⛔ You are not authorized to use th>
+        bot.send_message(message.chat.id, "⛔ You are not authorized to use this command!")
         return
 
     try:
         user_id = message.text.split()[1]  # Extract user ID from the message
         with open("premium_users.txt", "a") as f:
             f.write(user_id + "\n")
-        bot.send_message(message.chat.id, f"✅ User {user_id} added as a premi>
-        bot.send_message(user_id, "🎉 Congratulations! You are now a **Premium>
-    except IndexError:
+        bot.send_message(message.chat.id, f"✅ User {user_id} added as a premium member!")
+        bot.send_message(user_id, "🎉 Congratulations! You are now a **Premium Member**! 🚀")
+        except IndexError: 
         bot.send_message(message.chat.id, "⚠️ Usage: /addpremium <user_id>")
 
 # 🔄 Run the Bot
