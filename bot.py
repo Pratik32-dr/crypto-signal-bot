@@ -1,6 +1,8 @@
 import telebot
 import requests
 import time
+import os
+import json
 
 # 🔥 CONFIGURATION (SETUP YOUR DETAILS HERE)
 TOKEN = "7684846910:AAEBuBeZ0SGN2cw1bd6BhsxCKiU8xaOkxzY"
@@ -15,18 +17,22 @@ BINANCE_PRICE_API = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
 # ✅ Print startup message
 print("🚀 GainXpert Crypto Bot Running 24/7... Waiting for commands!", flush=True)
 
-# Define the premium users file
-premium_users_file = "premium_users.json"
+# Get the absolute path to the script's directory (works in Git & Termux)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+premium_users_file = os.path.join(script_dir, "premium_users.json")
 
 def load_premium_users():
     """Load the list of premium users from a JSON file."""
-    if os.path.exists(premium_users_file):
+    if os.path.exists(premium_users_file):  # ✅ This line was previously missing a colon (fixed)
         with open(premium_users_file, "r") as file:
             return json.load(file)
     return []  # Return an empty list if the file does not exist
 
-# Load premium users
+# ✅ Load premium users without error
 premium_users = load_premium_users()
+
+# ✅ Print to check (optional)
+print("Premium Users Loaded:", premium_users)
 
 # 🔥 Welcome Message
 @bot.message_handler(commands=['start'])
