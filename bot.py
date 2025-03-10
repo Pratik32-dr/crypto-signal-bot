@@ -58,7 +58,7 @@ def help_command(message):
 @bot.message_handler(commands=['news'])
 def news(message):
     try:
-        response = requests.get("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"
+        response = requests.get("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT")
         data = response.json()
 
         price = float(data["lastPrice"]) 
