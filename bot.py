@@ -15,7 +15,23 @@ BINANCE_PRICE_API = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
 # ✅ Print startup message
 print("🚀 GainXpert Crypto Bot Running 24/7... Waiting for commands!", flush=True)
 
-premium_users = set()
+# ✅ Load Premium Users from File
+premium_users_file = "premium_users.txt"
+
+# Function to load premium users from file
+def load_premium_users():
+    if os.path.exists(premium_users_file):
+        with open(premium_users_file, "r") as f:
+            return set(f.read().splitlines())
+    return set()
+
+# Function to save premium users to file
+def save_premium_users():
+    with open(premium_users_file, "w") as f:
+        f.write("\n".join(premium_users))
+
+# Initialize premium users
+premium_users = load_premium_users()
 
 # 🔥 Welcome Message
 @bot.message_handler(commands=['start'])
